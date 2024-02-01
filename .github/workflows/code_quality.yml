@@ -1,0 +1,35 @@
+name: Code_Quality
+
+on:
+  pull_request:
+    branches:
+      - main # Run on PR against main branch.
+
+jobs:
+  linter:
+    name: Lint check
+    runs-on: ubuntu-latest # Run on Ubuntu server.
+    steps:
+      - uses: actions/checkout@v4 # Checkout current repo.
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+      - name: Install dependencies
+        run: npm ci
+      - name: Run linter
+        run: npm run lint
+
+  unit_tests:
+    name: Run unit test
+    runs-on: ubuntu-latest # Run on Ubuntu server.
+    steps:
+      - uses: actions/checkout@v4 # Checkout current repo.
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+      - name: Install dependencies
+        run: npm ci
+      - name: Run unit tests
+        run: node test src/tests/MyUnitTest.js
