@@ -32,4 +32,4 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Run unit tests
-        run: node test src/tests/MyUnitTest.js
+        run: node src/tests/MyUnitTest.js
